@@ -8,6 +8,7 @@ import validationOptions from './utils/validation-options';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   const configService = app.get(ConfigService);
+  const port = configService.get('app.port') || 3000;
 
   app.enableShutdownHooks();
   app.setGlobalPrefix(configService.get('app.apiPrefix'), {
@@ -28,6 +29,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(configService.get('app.port'), '0.0.0.0');
+  await app.listen(port);
 }
 void bootstrap();
