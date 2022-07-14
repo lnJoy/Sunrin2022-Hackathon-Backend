@@ -30,7 +30,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     });
 
     if (!user) {
-      user = await this.usersService.create({ uid });
+      throw new UnauthorizedException();
     }
 
     return user;

@@ -7,11 +7,13 @@ import {
   UseGuards,
   HttpStatus,
   HttpCode,
+  Patch,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @ApiBearerAuth()
 @UseGuards(AuthGuard('jwt'))
@@ -33,5 +35,11 @@ export class UsersController {
   @HttpCode(HttpStatus.OK)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne({ id: +id });
+  }
+
+  @Patch(':uid')
+  @HttpCode(HttpStatus.OK)
+  update(@Param('uid') uid: string, @Body() updateProfileDto: UpdateUserDto) {
+    return this.usersService.update(uid, updateProfileDto);
   }
 }
