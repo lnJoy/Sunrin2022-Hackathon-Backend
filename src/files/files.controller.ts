@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Param,
@@ -12,6 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { FilesService } from './files.service';
+import { FileTypeDto } from './dto/file-type.dto';
 
 @ApiTags('Files')
 @Controller({
@@ -37,8 +39,8 @@ export class FilesController {
     },
   })
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file) {
-    return this.filesService.uploadFile(file);
+  async uploadFile(@UploadedFile() file, @Body() type: FileTypeDto) {
+    return this.filesService.uploadFile(file, type);
   }
 
   @Get(':path')

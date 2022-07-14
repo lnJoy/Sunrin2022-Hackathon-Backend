@@ -9,6 +9,7 @@ import * as multerS3 from 'multer-s3';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FileEntity } from './entities/file.entity';
 import { FilesService } from './files.service';
+import { v2 } from 'cloudinary';
 
 @Module({
   imports: [
@@ -53,6 +54,13 @@ import { FilesService } from './files.service';
                     .toLowerCase()}`,
                 );
               },
+            });
+          },
+          cloudinary: () => {
+            return v2.config({
+              cloud_name: configService.get('file.cloudinaryName'),
+              api_key: configService.get('file.cloudinaryKeyId'),
+              api_secret: configService.get('file.cloudinarySecretKey'),
             });
           },
         };
