@@ -21,7 +21,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
 
   public async validate(payload: JwtPayload) {
     if (payload.aud !== this.configService.get('auth.aud')) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('aud not matched');
     } 
 
     const uid = payload.sub;
@@ -30,7 +30,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     });
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('user not found');
     }
 
     return user;
