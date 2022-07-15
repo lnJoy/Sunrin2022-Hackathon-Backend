@@ -4,6 +4,7 @@ import { IsExist } from 'src/utils/validators/is-exists.validator';
 import { GenderEnum } from '../gender.enum';
 import { FileEntity } from 'src/files/entities/file.entity';
 import { User } from 'src/users/entities/user.entity';
+import { LocationEntity } from 'src/locations/entities/location.entity';
 
 export class CreateLostCatPostDto {
   @ApiProperty({ type: () => User })
@@ -19,6 +20,12 @@ export class CreateLostCatPostDto {
   })
   @IsNotEmpty()
   distinction: string;
+
+  @ApiProperty({
+    description: '위치'
+  })
+  @IsOptional()
+  location: LocationEntity[];
 
   @ApiProperty({
     description: '간단한 소개'

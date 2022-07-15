@@ -6,6 +6,7 @@ import { GenderEnum } from '../gender.enum';
 import { FileEntity } from 'src/files/entities/file.entity';
 import { CreateLostCatPostDto } from './create-lostcat-post.dto';
 import { User } from 'src/users/entities/user.entity';
+import { LocationEntity } from 'src/locations/entities/location.entity';
 
 export class UpdateLostCatPostDto extends PartialType(CreateLostCatPostDto) {
   @ApiProperty({ type: () => User })
@@ -21,6 +22,12 @@ export class UpdateLostCatPostDto extends PartialType(CreateLostCatPostDto) {
   })
   @IsOptional()
   distinction: string;
+
+  @ApiProperty({
+    description: '위치'
+  })
+  @IsOptional()
+  location: LocationEntity[];
 
   @ApiProperty({
     description: '간단한 소개'

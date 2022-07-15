@@ -1,4 +1,6 @@
 import { FileEntity } from "src/files/entities/file.entity";
+import { CreateLocationDto } from "src/locations/dto/create-location.dto";
+import { LocationEntity } from "src/locations/entities/location.entity";
 import { RoadCatPostEntity } from "src/road-cat-posts/entities/roadcat-post.entity";
 import { User } from "src/users/entities/user.entity";
 import { EntityHelper } from "src/utils/entity-helper";
@@ -29,7 +31,11 @@ export class LostCatPostEntity extends EntityHelper {
   // })
   // roadCats: RoadCatPostEntity[];
 
-  @Column({ type: 'text', nullable: false })
+  @ManyToOne(() => LocationEntity, (locations) => locations.id)
+  @JoinColumn()
+  location: LocationEntity[];
+
+  @Column({ type: 'text', nullable: true })
   lostPhoto?: string;
 
   @Column({ nullable: true }) // 특징

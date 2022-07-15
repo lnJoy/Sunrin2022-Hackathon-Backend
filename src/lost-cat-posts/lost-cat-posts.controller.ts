@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Request, Param, Delete, HttpStatus, HttpCode, Query, DefaultValuePipe, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CreateLocationDto } from 'src/locations/dto/create-location.dto';
 import { infinityPagination } from 'src/utils/infinity-pagination';
 import { CreateLostCatPostDto } from './dto/create-lostcat-post.dto';
 import { UpdateLostCatPostDto } from './dto/update-lostcat-post.dto';
@@ -51,10 +52,10 @@ export class LostCatPostsController {
     return await this.lostCatPostsService.findByRandom();
   }
 
-  @Patch('')
+  @Patch(':id')
   @HttpCode(HttpStatus.OK)
-  update(@Query() query: any, @Body() updateProfileDto: UpdateLostCatPostDto) {
-    // return this.lostCatPostsService.update(query.id, query.connect);
+  update(@Param() id: number, @Body() locationDto: CreateLocationDto[]) {
+    return this.lostCatPostsService.update(id, locationDto);
   }
 
   @Delete(':id')

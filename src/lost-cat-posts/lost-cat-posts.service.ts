@@ -14,6 +14,7 @@ import { RoadCatPostsService } from 'src/road-cat-posts/road-cat-posts.service';
 import { CreateRoadCatPostDto } from 'src/road-cat-posts/dto/create-roadcat-post.dto';
 import { UpdateRoadCatPostDto } from 'src/road-cat-posts/dto/update-roadcat-post.dto';
 import { RoadCatPostEntity } from 'src/road-cat-posts/entities/roadcat-post.entity';
+import { CreateLocationDto } from 'src/locations/dto/create-location.dto';
 
 @Injectable()
 export class LostCatPostsService {
@@ -56,13 +57,13 @@ export class LostCatPostsService {
       .getOne();
   }
 
-  async update(uid: string, updateProfileDto: UpdateLostCatPostDto) {
-    // return this.lostCatPostRepository.save(
-    //   this.lostCatPostRepository.create({
-    //     uid,
-    //     ...updateProfileDto,
-    //   }),
-    // );
+  async update(id: number, locationDto: CreateLocationDto[]) {
+    return this.lostCatPostRepository.save(
+      this.lostCatPostRepository.create({
+        id,
+        location: locationDto,
+      }),
+    );
   }
 
   // async updateByRoadCat(id: number, newRoadCat: RoadCatPostEntity, updateProfileDto: UpdateLostCatPostDto) {
