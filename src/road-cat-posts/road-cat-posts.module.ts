@@ -8,7 +8,7 @@ import { RoadCatPostsService } from './road-cat-posts.service';
 
 @Module({
   imports: [
-    LostCatPostsModule,
+    // LostCatPostsModule,
     TypeOrmModule.forFeature([RoadCatPostEntity])],
   controllers: [RoadCatPostsController],
   providers: [RoadCatPostsService],

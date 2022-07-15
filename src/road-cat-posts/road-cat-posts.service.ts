@@ -49,8 +49,8 @@ export class RoadCatPostsService {
   }
 
   async update(lostId: number, connect: number) {
-    // const roadCat = await this.roadCatPostRepository.findOne({ id: connect });
-    // return this.lostCatPostsService.updateByRoadCat(lostId, roadCat);
+    // const lostCat = await this.lostCatPostsService.findOne({ id: lostId });
+    // return this.roadCatPostRepository.update(connect, {lostCat});
   } 
 
   async softDelete(id: number): Promise<void> {

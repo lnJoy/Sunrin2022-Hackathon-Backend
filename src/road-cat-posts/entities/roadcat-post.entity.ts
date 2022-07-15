@@ -19,9 +19,9 @@ export class RoadCatPostEntity extends EntityHelper {
 
   // @OneToMany(() => LostCatPostEntity, (lostCats) => lostCats.id, {
   // })
-  // lostCats: LostCatPostEntity;
+  // lostCat: LostCatPostEntity;
 
-  @Column({ type: 'text', nullable: false })
+  @Column({ type: 'text', nullable: true })
   roadPhoto?: string;
 
   @OneToOne(() => LocationEntity, {
