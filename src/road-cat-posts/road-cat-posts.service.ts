@@ -11,11 +11,13 @@ import { UpdateRoadCatPostDto } from './dto/update-roadcat-post.dto';
 import { RoadCatPostEntity } from './entities/roadcat-post.entity';
 import { plainToClass } from 'class-transformer';
 import { User } from 'src/users/entities/user.entity';
+import { LostCatPostsService } from 'src/lost-cat-posts/lost-cat-posts.service';
 
 @Injectable()
 export class RoadCatPostsService {
   constructor(
     private readonly configService: ConfigService,
+    private lostCatPostsService: LostCatPostsService,
     @InjectRepository(RoadCatPostEntity)
     private roadCatPostRepository: Repository<RoadCatPostEntity>,
   ) {}
@@ -46,14 +48,10 @@ export class RoadCatPostsService {
     });
   }
 
-  update(id: number, updateRoadCatPostDto: UpdateRoadCatPostDto) {
-    return this.roadCatPostRepository.save(
-      this.roadCatPostRepository.create({
-        id,
-        ...updateRoadCatPostDto,
-      }),
-    );
-  }
+  async update(lostId: number, connect: number) {
+    const roadCat = await this.roadCatPostRepository.findOne({ id: connect });
+    return this.lostCatPostsService.updateByRoadCat(lostId, roadCat);
+  } 
 
   async softDelete(id: number): Promise<void> {
     await this.roadCatPostRepository.softDelete(id);

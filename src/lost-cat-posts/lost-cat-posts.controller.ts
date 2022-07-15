@@ -6,8 +6,6 @@ import { CreateLostCatPostDto } from './dto/create-lostcat-post.dto';
 import { UpdateLostCatPostDto } from './dto/update-lostcat-post.dto';
 import { LostCatPostsService } from './lost-cat-posts.service';
 
-@ApiBearerAuth()
-@UseGuards(AuthGuard('jwt'))
 @ApiTags('LostCats')
 @Controller({
   path: 'posts/lost-cat',
@@ -47,10 +45,16 @@ export class LostCatPostsController {
     return this.lostCatPostsService.findOne({ id: +id });
   }
 
-  @Patch(':id')
+  @Get('random')
   @HttpCode(HttpStatus.OK)
-  update(@Param('id') id: number, @Body() updateProfileDto: UpdateLostCatPostDto) {
-    return this.lostCatPostsService.update(id, updateProfileDto);
+  async findByRandom() {
+    return await this.lostCatPostsService.findByRandom();
+  }
+
+  @Patch('')
+  @HttpCode(HttpStatus.OK)
+  update(@Query() query: any, @Body() updateProfileDto: UpdateLostCatPostDto) {
+    // return this.lostCatPostsService.update(query.id, query.connect);
   }
 
   @Delete(':id')

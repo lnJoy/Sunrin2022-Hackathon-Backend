@@ -1,10 +1,11 @@
 import { FileEntity } from "src/files/entities/file.entity";
+import { RoadCatPostEntity } from "src/road-cat-posts/entities/roadcat-post.entity";
 import { User } from "src/users/entities/user.entity";
 import { EntityHelper } from "src/utils/entity-helper";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { GenderEnum } from "../gender.enum";
 
-@Entity({ name: 'road_cat_post' })
+@Entity({ name: 'lost_cat_post' })
 export class LostCatPostEntity extends EntityHelper {
   @PrimaryGeneratedColumn()
   id: number;
@@ -13,14 +14,23 @@ export class LostCatPostEntity extends EntityHelper {
   @JoinColumn()
   author: User;
 
-  @ManyToMany(() => FileEntity, (photos) => photos.id, {
+  // @ManyToMany(() => RoadCatPostEntity, (roadCats) => roadCats.id, {
+  //   cascade: true
+  // })
+  // @JoinTable({
+  //   joinColumns:[{name: "lostCat_id"}],
+  //   inverseJoinColumns:[{name: "roadCat_id"}],
+  // })
+  // roadCat: RoadCatPostEntity;
+
+  @ManyToOne(() => RoadCatPostEntity, (roadCats) => roadCats.id, {
+    eager: true,
     cascade: true
   })
-  @JoinTable({
-    joinColumns:[{name: "lost_cat_id"}],
-    inverseJoinColumns:[{name: "photo_id"}],
-  })
-  photos: FileEntity[];
+  roadCats: RoadCatPostEntity[];
+
+  @Column({ type: 'text', nullable: false })
+  lostPhoto?: string;
 
   @Column({ nullable: true }) // 특징
   distinction: string;

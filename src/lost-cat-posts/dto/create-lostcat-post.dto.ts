@@ -10,9 +10,9 @@ export class CreateLostCatPostDto {
   @IsOptional()
   author?: User;
 
-  @ApiProperty({ type: () => FileEntity })
+  @ApiProperty({ type: 'text' })
   @IsOptional()
-  photos?: FileEntity[];
+  photo: string;
 
   @ApiProperty({
     description: '특징'

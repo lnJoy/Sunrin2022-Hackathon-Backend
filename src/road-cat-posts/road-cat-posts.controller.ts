@@ -6,8 +6,6 @@ import { CreateRoadCatPostDto } from './dto/create-roadcat-post.dto';
 import { UpdateRoadCatPostDto } from './dto/update-roadcat-post.dto';
 import { RoadCatPostsService } from './road-cat-posts.service';
 
-@ApiBearerAuth()
-@UseGuards(AuthGuard('jwt'))
 @ApiTags('RoadCats')
 @Controller({
   path: 'posts/road-cat',
@@ -47,10 +45,10 @@ export class RoadCatPostsController {
     return this.roadCatPostsService.findOne({ author: req.user });
   }
 
-  @Patch(':id')
+  @Patch('')
   @HttpCode(HttpStatus.OK)
-  update(@Param('id') id: number, @Body() updateProfileDto: UpdateRoadCatPostDto) {
-    return this.roadCatPostsService.update(id, updateProfileDto);
+  update(@Query() query: any) {
+    return this.roadCatPostsService.update(query.id, query.connect);
   }
 
   @Delete(':id')

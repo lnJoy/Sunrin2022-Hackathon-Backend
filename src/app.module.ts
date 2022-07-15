@@ -10,7 +10,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { ForgotModule } from './forgot/forgot.module';
 import { HomeModule } from './home/home.module';
-import { PostsModule } from './road-cat-posts/road-cat-posts.module';
+import { RoadCatPostsModule } from './road-cat-posts/road-cat-posts.module';
+import { LikesModule } from './likes/likes.module';
+import { LostCatPostsModule } from './lost-cat-posts/lost-cat-posts.module';
 
 @Module({
   imports: [
@@ -31,7 +33,8 @@ import { PostsModule } from './road-cat-posts/road-cat-posts.module';
     AuthModule,
     ForgotModule,
     HomeModule,
-    PostsModule,
+    RoadCatPostsModule,
+    LostCatPostsModule,
   ],
 })
 export class AppModule {}
