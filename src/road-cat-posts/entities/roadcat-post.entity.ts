@@ -21,8 +21,8 @@ export class RoadCatPostEntity extends EntityHelper {
   // })
   // lostCat: LostCatPostEntity;
 
-  @Column({ type: 'text', nullable: true })
-  roadPhoto?: string;
+  @Column({ nullable: true })
+  roadPhoto: string;
 
   @OneToOne(() => LocationEntity, {
     cascade: true
