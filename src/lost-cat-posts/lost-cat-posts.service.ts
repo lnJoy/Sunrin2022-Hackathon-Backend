@@ -37,14 +37,14 @@ export class LostCatPostsService {
     return this.lostCatPostRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
-      relations: ['author', 'roadCats']
+      relations: ['author']
     });
   }
 
   findOne(fields: EntityCondition<LostCatPostEntity>) {
     return this.lostCatPostRepository.findOne({
       where: fields,
-      relations: ['author', 'roadCats']
+      relations: ['author']
     });
   }
 
@@ -65,13 +65,14 @@ export class LostCatPostsService {
     // );
   }
 
-  async updateByRoadCat(id: number, newRoadCat: RoadCatPostEntity) {
-    return this.lostCatPostRepository.save(
-      this.lostCatPostRepository.create({
-        id,
-        roadCats: [newRoadCat]}
-      ));
-  }
+  // async updateByRoadCat(id: number, newRoadCat: RoadCatPostEntity, updateProfileDto: UpdateLostCatPostDto) {
+  //   return this.lostCatPostRepository.save(
+  //     this.lostCatPostRepository.create({
+  //       id,
+  //       roadCats: [newRoadCat]},
+  //       ...updateProfileDto,
+  //     ));
+  // }
 
   async softDelete(id: number): Promise<void> {
     await this.lostCatPostRepository.softDelete(id);

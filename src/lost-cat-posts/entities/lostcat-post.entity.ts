@@ -23,11 +23,11 @@ export class LostCatPostEntity extends EntityHelper {
   // })
   // roadCat: RoadCatPostEntity;
 
-  @ManyToOne(() => RoadCatPostEntity, (roadCats) => roadCats.id, {
-    eager: true,
-    cascade: true
-  })
-  roadCats: RoadCatPostEntity[];
+  // @ManyToOne(() => RoadCatPostEntity, (roadCats) => roadCats.id, {
+  //   eager: true,
+  //   cascade: true
+  // })
+  // roadCats: RoadCatPostEntity[];
 
   @Column({ type: 'text', nullable: false })
   lostPhoto?: string;
