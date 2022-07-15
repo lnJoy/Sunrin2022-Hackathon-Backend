@@ -6,6 +6,6 @@ export class HomeService {
   constructor(private configService: ConfigService) {}
 
   appInfo() {
-    return { name: this.configService.get('auth.secret') };
+    return { name: this.configService.get('app.name') };
   }
 }
