@@ -28,6 +28,7 @@ export class UsersController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createProfileDto: CreateUserDto) {
+    console.log(`ASD: ${createProfileDto}`);
     return this.usersService.create(createProfileDto);
   }
 
