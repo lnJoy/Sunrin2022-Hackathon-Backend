@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode, Query, DefaultValuePipe, ParseIntPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Request, Param, Delete, HttpStatus, HttpCode, Query, DefaultValuePipe, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { infinityPagination } from 'src/utils/infinity-pagination';
@@ -18,8 +18,8 @@ export class LostCatPostsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createProfileDto: CreateLostCatPostDto) {
-    return this.lostCatPostsService.create(createProfileDto);
+  create(@Body() createProfileDto: CreateLostCatPostDto, @Request() req: any) {
+    return this.lostCatPostsService.create(createProfileDto, req.user);
   }
 
   @Get()

@@ -23,7 +23,7 @@ export class RoadCatPostEntity extends EntityHelper {
     joinColumns:[{name: "lost_cat_id"}],
     inverseJoinColumns:[{name: "photo_id"}],
   })
-  pictures: FileEntity[];
+  photos: FileEntity[];
 
   @OneToOne(() => LocationEntity, {
     cascade: true

@@ -14,7 +14,7 @@ export class UpdateRoadCatPostDto extends PartialType(CreateRoadCatPostDto) {
 
   @ApiProperty({ type: () => FileEntity })
   @IsOptional()
-  pictures?: FileEntity[];
+  photos?: FileEntity[];
 
   @ApiProperty({
     type: () => LocationEntity,

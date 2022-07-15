@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/users/entities/user.entity';
 import { EntityCondition } from 'src/utils/types/entity-condition.type';
 import { IPaginationOptions } from 'src/utils/types/pagination-options';
 import { Repository } from 'typeorm';
 import { CreateLostCatPostDto } from './dto/create-lostcat-post.dto';
 import { UpdateLostCatPostDto } from './dto/update-lostcat-post.dto';
 import { LostCatPostEntity } from './entities/lostcat-post.entity';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class LostCatPostsService {
@@ -16,9 +18,12 @@ export class LostCatPostsService {
     private lostCatPostRepository: Repository<LostCatPostEntity>,
   ) {}
 
-  create(createLostCatPostDto: CreateLostCatPostDto) {
+  create(createLostCatPostDto: CreateLostCatPostDto, userData: User) {
     return this.lostCatPostRepository.save(
-      this.lostCatPostRepository.create(createLostCatPostDto),
+      this.lostCatPostRepository.create({
+        ...createLostCatPostDto,
+        author: userData,
+      }),
     );
   }
 
@@ -26,7 +31,7 @@ export class LostCatPostsService {
     return this.lostCatPostRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
-      relations: ['user', 'pictures']
+      relations: ['user', 'photos']
     });
   }
 

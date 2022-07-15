@@ -20,7 +20,7 @@ export class LostCatPostEntity extends EntityHelper {
     joinColumns:[{name: "lost_cat_id"}],
     inverseJoinColumns:[{name: "photo_id"}],
   })
-  pictures: FileEntity[];
+  photos: FileEntity[];
 
   @Column({ nullable: true }) // 특징
   distinction: string;

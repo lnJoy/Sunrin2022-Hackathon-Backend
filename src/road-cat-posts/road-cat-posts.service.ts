@@ -33,7 +33,7 @@ export class RoadCatPostsService {
   findOne(fields: EntityCondition<RoadCatPostEntity>) {
     return this.roadCatPostRepository.findOne({
       where: fields,
-      relations: ['user', 'pictures', 'location'],
+      relations: ['user', 'photos', 'location'],
     });
   }
 
