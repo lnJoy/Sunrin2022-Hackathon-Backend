@@ -35,13 +35,13 @@ export class LostCatPostEntity extends EntityHelper {
   @JoinColumn()
   location: LocationEntity[];
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   lostPhoto?: string;
 
   @Column({ nullable: true }) // 특징
   distinction: string;
 
-  @Column({ type: 'text', nullable: true })
+  @Column({ nullable: true })
   contents: string;
 
   @Column({ nullable: true })

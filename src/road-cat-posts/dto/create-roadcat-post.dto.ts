@@ -14,7 +14,7 @@ export class CreateRoadCatPostDto {
   @ApiProperty()
   @IsOptional()
   @IsString()
-  photo?: string;
+  roadPhoto?: string;
 
   @ApiProperty({
     type: () => LocationEntity,

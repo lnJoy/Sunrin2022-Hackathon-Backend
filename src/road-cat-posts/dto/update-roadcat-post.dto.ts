@@ -12,9 +12,9 @@ export class UpdateRoadCatPostDto extends PartialType(CreateRoadCatPostDto) {
   @IsOptional()
   author?: User;
 
-  @ApiProperty({ type: () => FileEntity })
+  @ApiProperty()
   @IsOptional()
-  photos?: FileEntity[];
+  roadPhoto?: string;
 
   @ApiProperty({
     type: () => LocationEntity,
