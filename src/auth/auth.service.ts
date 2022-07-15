@@ -18,48 +18,17 @@ export class AuthService {
     await this.usersService.create(dto);
   }
 
-  async validateLogin(
-    loginDto: AuthEmailLoginDto,
-  ): Promise<{ token: string; user: User }> {
-    const user = await this.usersService.findOne({
-      email: loginDto.email,
-    });
-
-    const isValidPassword = await bcrypt.compare(
-      loginDto.password,
-      user.password,
-    );
-
-    if (isValidPassword) {
-      const token = await this.jwtService.sign({
-        id: user.id,
-      });
-
-      return { token, user: user };
-    } else {
-      throw new HttpException(
-        {
-          status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            password: 'incorrectPassword',
-          },
-        },
-        HttpStatus.UNPROCESSABLE_ENTITY,
-      );
-    }
-  }
-
   async me(user: User): Promise<User> {
     return this.usersService.findOne({
-      id: user.id,
+      uid: user.uid,
     });
   }
 
   async update(user: User, userDto: UpdateUserDto): Promise<User> {
-    await this.usersService.update(user.id, userDto);
+    await this.usersService.update(user.uid, userDto);
 
     return this.usersService.findOne({
-      id: user.id,
+      uid: user.uid,
     });
   }
 }

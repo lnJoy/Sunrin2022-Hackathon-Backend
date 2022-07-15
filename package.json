@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "type": "module",
   "scripts": {
     "postinstall": "is-ci || husky install",
     "pretypeorm": "ts-node -r tsconfig-paths/register ./src/database/scripts/copy-typeorm-config.ts",

@@ -37,9 +37,9 @@ export class UsersController {
     return this.usersService.findOne({ id: +id });
   }
 
-  @Patch(':id')
+  @Patch(':uid')
   @HttpCode(HttpStatus.OK)
-  update(@Param('id') id: number, @Body() updateProfileDto: UpdateUserDto) {
-    return this.usersService.update(id, updateProfileDto);
+  update(@Param('uid') uid: string, @Body() updateProfileDto: UpdateUserDto) {
+    return this.usersService.update(uid, updateProfileDto);
   }
 }

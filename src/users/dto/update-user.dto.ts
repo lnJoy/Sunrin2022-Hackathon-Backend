@@ -6,9 +6,6 @@ import { CreateUserDto } from './create-user.dto';
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiProperty()
   @IsOptional()
-  @Validate(IsNotExist, ['User'], {
-    message: 'uidAlreadyExists',
-  })
   uid: string;
 
   @ApiProperty()

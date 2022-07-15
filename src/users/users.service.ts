@@ -25,10 +25,10 @@ export class UsersService {
     });
   }
 
-  update(id: number, updateProfileDto: UpdateUserDto) {
+  update(uid: string, updateProfileDto: UpdateUserDto) {
     return this.usersRepository.save(
       this.usersRepository.create({
-        id,
+        uid,
         ...updateProfileDto,
       }),
     );
