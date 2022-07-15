@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, Validate } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, Validate } from 'class-validator';
 import { IsExist } from 'src/utils/validators/is-exists.validator';
 import { GenderEnum } from '../../lost-cat-posts/gender.enum';
 import { FileEntity } from 'src/files/entities/file.entity';
@@ -13,6 +13,7 @@ export class CreateRoadCatPostDto {
 
   @ApiProperty()
   @IsOptional()
+  @IsString()
   photo?: string;
 
   @ApiProperty({

@@ -50,11 +50,9 @@ export class LostCatPostsService {
   }
 
   async findByRandom() {
-    return this.lostCatPostRepository.createQueryBuilder("lostCatPost")
-      .select("id")
-      .orderBy("RANDOM()")
-      .limit(1)
-      .getOne();
+    const allData = await this.lostCatPostRepository.find();
+    const randNum = Math.random() * allData.length;
+    return allData[randNum];
   }
 
   async update(id: number, locationDto: CreateLocationDto[]) {
