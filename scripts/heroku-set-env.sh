@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ENV_FILE="../.env"
+ENV_FILE=".env"
 
 if [ ! -e $ENV_FILE ]; then
   exit 1
