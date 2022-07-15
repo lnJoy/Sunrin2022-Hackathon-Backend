@@ -6,9 +6,9 @@ import { User } from '../entities/user.entity';
 
 export class CreateUserDto {
   @ApiProperty()
-  @Validate(IsNotExist, ['User', 'uid'], {
-    message: 'uidAlreadyExists',
-  })
+  // @Validate(IsNotExist, ['User', 'uid'], {
+  //   message: 'uidAlreadyExists',
+  // })
   @IsString()
   uid: string;
 }
