@@ -17,7 +17,7 @@ import { LostCatPostsService } from 'src/lost-cat-posts/lost-cat-posts.service';
 export class RoadCatPostsService {
   constructor(
     private readonly configService: ConfigService,
-    private lostCatPostsService: LostCatPostsService,
+    // private lostCatPostsService: LostCatPostsService,
     @InjectRepository(RoadCatPostEntity)
     private roadCatPostRepository: Repository<RoadCatPostEntity>,
   ) {}
