@@ -26,12 +26,14 @@ export class RoadCatPostsService {
     return this.roadCatPostRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
+      relations: ['user', 'file', 'location'],
     });
   }
 
   findOne(fields: EntityCondition<RoadCatPostEntity>) {
     return this.roadCatPostRepository.findOne({
       where: fields,
+      relations: ['user', 'pictures', 'location'],
     });
   }
 

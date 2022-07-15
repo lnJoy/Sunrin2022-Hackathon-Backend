@@ -26,6 +26,7 @@ export class LostCatPostsService {
     return this.lostCatPostRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
+      relations: ['user', 'pictures']
     });
   }
 
