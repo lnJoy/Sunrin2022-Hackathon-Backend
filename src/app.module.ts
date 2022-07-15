@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { ForgotModule } from './forgot/forgot.module';
 import { HomeModule } from './home/home.module';
+import { PostsModule } from './road-cat-posts/road-cat-posts.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { HomeModule } from './home/home.module';
     AuthModule,
     ForgotModule,
     HomeModule,
+    PostsModule,
   ],
 })
 export class AppModule {}
