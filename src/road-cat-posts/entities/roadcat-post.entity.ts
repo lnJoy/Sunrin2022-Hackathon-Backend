@@ -5,7 +5,7 @@ import { EntityHelper } from "src/utils/entity-helper";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { GenderEnum } from "../../lost-cat-posts/gender.enum";
 
-@Entity()
+@Entity({ name: 'road_cat_post' })
 export class RoadCatPostEntity extends EntityHelper {
   @PrimaryGeneratedColumn()
   id: number;

@@ -16,9 +16,6 @@ export class User extends EntityHelper {
   @Column({ unique: true, nullable: true })
   uid: string
 
-  @Column({ nullable: true })
-  username: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
