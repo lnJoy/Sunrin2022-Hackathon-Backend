@@ -11,9 +11,9 @@ export class CreateRoadCatPostDto {
   @IsOptional()
   author?: User;
 
-  @ApiProperty({ type: () => FileEntity })
+  @ApiProperty()
   @IsOptional()
-  photos?: FileEntity[];
+  photo?: string;
 
   @ApiProperty({
     type: () => LocationEntity,

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode, Query, DefaultValuePipe, ParseIntPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Request, Delete, HttpStatus, HttpCode, Query, DefaultValuePipe, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { infinityPagination } from 'src/utils/infinity-pagination';
@@ -18,8 +18,8 @@ export class RoadCatPostsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createProfileDto: CreateRoadCatPostDto) {
-    return this.roadCatPostsService.create(createProfileDto);
+  create(@Body() createProfileDto: CreateRoadCatPostDto, @Request() req: any) {
+    return this.roadCatPostsService.create(createProfileDto, req.user);
   }
 
   @Get()
@@ -41,10 +41,10 @@ export class RoadCatPostsController {
     );
   }
 
-  @Get(':id')
+  @Get('me')
   @HttpCode(HttpStatus.OK)
-  findOne(@Param('id') id: string) {
-    return this.roadCatPostsService.findOne({ id: +id });
+  findOne(@Request() req: any) {
+    return this.roadCatPostsService.findOne({ author: req.user });
   }
 
   @Patch(':id')

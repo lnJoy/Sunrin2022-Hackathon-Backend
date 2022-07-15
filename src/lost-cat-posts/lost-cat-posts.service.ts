@@ -9,6 +9,7 @@ import { CreateLostCatPostDto } from './dto/create-lostcat-post.dto';
 import { UpdateLostCatPostDto } from './dto/update-lostcat-post.dto';
 import { LostCatPostEntity } from './entities/lostcat-post.entity';
 import { plainToClass } from 'class-transformer';
+import { LocationEntity } from 'src/locations/entities/location.entity';
 
 @Injectable()
 export class LostCatPostsService {
@@ -31,13 +32,14 @@ export class LostCatPostsService {
     return this.lostCatPostRepository.find({
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
-      relations: ['user', 'photos']
+      relations: ['author', 'photos']
     });
   }
 
   findOne(fields: EntityCondition<LostCatPostEntity>) {
     return this.lostCatPostRepository.findOne({
       where: fields,
+      relations: ['author', 'photos']
     });
   }
 

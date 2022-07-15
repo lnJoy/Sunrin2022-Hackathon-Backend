@@ -1,7 +1,7 @@
 import { EntityHelper } from "src/utils/entity-helper";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity()
+@Entity({ name: 'location' })
 export class LocationEntity extends EntityHelper {
   @PrimaryGeneratedColumn()
   id: number;

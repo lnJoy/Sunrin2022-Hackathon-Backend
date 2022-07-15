@@ -16,14 +16,8 @@ export class RoadCatPostEntity extends EntityHelper {
   @JoinColumn()
   author: User;
 
-  @ManyToMany(() => FileEntity, (photos) => photos.id, {
-    cascade: true
-  })
-  @JoinTable({
-    joinColumns:[{name: "lost_cat_id"}],
-    inverseJoinColumns:[{name: "photo_id"}],
-  })
-  photos: FileEntity[];
+  @Column({ type: 'text', nullable: true })
+  photo: string;
 
   @OneToOne(() => LocationEntity, {
     cascade: true
